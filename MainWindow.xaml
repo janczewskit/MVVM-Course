@@ -13,17 +13,25 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="100" MaxWidth="100"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center">Imię</TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">Nazwisko</TextBlock>
-        <TextBox Grid.Row="0" Grid.Column="2" VerticalAlignment="Center"  Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button Grid.Row="2" Grid.Column="2" Command="{Binding ValidateCommand, Mode=TwoWay}">Sprawdź</Button>
+        <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" 
+                   VerticalAlignment="Center">Nazwisko</TextBlock>
+        <TextBox Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Width="100" HorizontalAlignment="Left"
+                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Width="100" HorizontalAlignment="Left"
+                 Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Row="2" Grid.Column="2" Width="100" HorizontalAlignment="Left"
+                Command="{Binding ValidateCommand, Mode=TwoWay}">Sprawdź</Button>
+        <TextBlock Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left"
+                   VerticalAlignment="Center" Text="{Binding Result, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </Window>

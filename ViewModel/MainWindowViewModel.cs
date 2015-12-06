@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using System.Windows;
 using System.Windows.Input;
 using Prism.Commands;
-using Prism.Interactivity.InteractionRequest;
 using Prism.Mvvm;
 
 namespace MVVM_1.ViewModel
@@ -19,6 +13,19 @@ namespace MVVM_1.ViewModel
 
         #region Propeties
 
+        private string _result;
+
+        public string Result
+        {
+            get { return _result; }
+            set
+            {
+                _result = value;
+                OnPropertyChanged(() => Result);
+            }
+        }
+
+
         private string _name;
 
         public string Name
@@ -26,11 +33,11 @@ namespace MVVM_1.ViewModel
             get
             {
                 return !string.IsNullOrEmpty(_name) ? _name : _defaultNameText;
-                
             }
             set
             {
                 _name = value == string.Empty ? _defaultNameText : value;
+                //metoda OnPropertyChanged informuje widok o zmianach wartości
                 OnPropertyChanged(() => Name);
             }
         }
@@ -54,6 +61,7 @@ namespace MVVM_1.ViewModel
 
         #region Commands
 
+        //komenda musi być publicznie dostępnym akcesorem
         public ICommand ValidateCommand { get; set; }
 
         #endregion
@@ -62,8 +70,8 @@ namespace MVVM_1.ViewModel
 
         public MainWindowViewModel()
         {
+            //przypisanie akcji do komendy
             ValidateCommand = new DelegateCommand(ValidateAction);
-            //(ValidateAction);
         }
 
         #endregion
@@ -76,10 +84,10 @@ namespace MVVM_1.ViewModel
                 && Surname != _defaultSurnameText;
             if (!validationResult)
             {
-                MessageBox.Show("Błąd, nie wypełniłeś wszystkich pól");
+                Result = "Błąd, nie wypełniłeś wszystkich pól";
                 return;
             }
-            MessageBox.Show("Brawo, poprawnie wypełniony formularz!");
+            Result = "Brawo, poprawnie wypełniony formularz!";
         }
 
         #endregion
